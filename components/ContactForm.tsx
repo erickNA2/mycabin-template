@@ -22,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 const formSchema = z.object({
 	name: z.string().min(1),
 	email: z.string(),
-	descricao: z.string().optional(),
+	description: z.string().optional(),
 	termos: z.boolean(),
 });
 
@@ -85,21 +85,17 @@ export default function ContactForm() {
 					/>
 					<FormField
 						control={form.control}
-						name="descricao"
+						name="description"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Descrição</FormLabel>
+								<FormLabel>Message</FormLabel>
 								<FormControl>
 									<Textarea
-										id="descricao"
-										placeholder="Descrição"
+										id="description"
+										placeholder="Add a message"
 										{...field}
 									/>
 								</FormControl>
-								<FormDescription>
-									Adicione descrições ou comentarios
-									adicionais sobre seu projeto
-								</FormDescription>
 								<FormMessage />
 							</FormItem>
 						)}
@@ -117,15 +113,15 @@ export default function ContactForm() {
 								<div className="space-y-1 leading-none">
 									<FormLabel>
 										<p>
-											Eu concordo com o processamento dos
-											meus dados pessoais de acordo com a{" "}
+											I agree to have my personal data
+											processed according to the{" "}
 											<Link
 												href={"/legal"}
 												className={
 													"font-bold hover:text-blue-500 underline"
 												}
 											>
-												Política de Privacidade
+												Privacy Policy
 											</Link>
 										</p>
 									</FormLabel>

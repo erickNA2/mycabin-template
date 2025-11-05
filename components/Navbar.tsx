@@ -1,11 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
 
 export default function Navbar() {
-	const [mobileOpen, setMobileOpen] = useState<boolean>(false);
-
 	const [prevScrollPos, setPrevScrollPos] = useState(0);
 	const [visible, setVisible] = useState(true);
 
@@ -24,21 +21,10 @@ export default function Navbar() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [prevScrollPos]);
 
-	useEffect(() => {
-		const handleResize = () => {
-			if (window.innerWidth >= 768) {
-				setMobileOpen(false);
-			}
-
-			window.addEventListener("resize", handleResize);
-			return () => window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-
 	return (
 		<nav
 			className={`fixed w-screen top-0 left-0 z-50 backdrop-blur-[1px] bg-linear-to-b from-[#111111aa] to-[#11111111] shadow transition-all duration-500 ease-in-out overflow-hidden ${
-				visible ? "h-18" : "h-0"
+				visible ? "h-18" : "h-18"
 			}`}
 		>
 			<div className="container mx-auto flex items-center justify-between p-4">

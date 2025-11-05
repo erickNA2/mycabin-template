@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle, CardHeader } from "@/components/ui/card";
@@ -5,11 +7,17 @@ import { GiCctvCamera, GiBeech, GiCharging } from "react-icons/gi";
 import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Home() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: "-100px -100px" });
+
 	return (
 		<>
 			<section
+				ref={ref}
 				id="home"
 				className="relative w-screen h-screen flex flex-col items-center md:items-baseline justify-center px-10"
 			>
@@ -23,13 +31,23 @@ export default function Home() {
 					className="absolute top-0 left-0 z-1 w-full h-full"
 				></Image>
 				<div className="flex flex-col items-center md:items-baseline justify-center space-y-6 w-full md:w-3/5 h-1/2  md:border-l-2 border-neutral-100 md:pl-4 z-3">
-					<h1 className="text-4xl md:text-5xl text-neutral-100 text-center md:text-left ">
+					<h1
+						className={`text-4xl md:text-5xl text-neutral-100 text-center md:text-left transition-all duration-600 ease-out ${
+							isInView
+								? "transform-none opacity-100"
+								: "translate-x-[-200px] opacity-0"
+						} `}
+					>
 						Find the perfect landscape for a wonderful vacation
 					</h1>
 					<Button
 						variant={"outline"}
 						size={"lg"}
-						className="rounded-none hover:cursor-pointer"
+						className={`rounded-none hover:cursor-pointer transition-all delay-100 duration-600 ease-out ${
+							isInView
+								? "transform-none opacity-100"
+								: "translate-x-[-200px] opacity-0"
+						}`}
 					>
 						Book Today
 					</Button>
@@ -37,6 +55,7 @@ export default function Home() {
 			</section>
 
 			<section
+				ref={ref}
 				id="about"
 				className="relative w-screen min-h-[140vh] flex flex-col items-center justify-center my-10 md:my-20"
 			>
@@ -52,10 +71,22 @@ export default function Home() {
 						></Image>
 					</div>
 					<div className="relative w-full h-full flex flex-col items-baseline justify-center px-20">
-						<h2 className="text-2xl text-left font-semibold">
+						<h2
+							className={`text-2xl text-left font-semibold transition-all duration-600 ease-out ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							Cabins all around the world
 						</h2>
-						<p className="text-sm text-left ">
+						<p
+							className={`text-sm text-left transition-all delay-100 duration-600 ease-out  ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							{" "}
 							We offer{" "}
 							<span className="font-semibold">
@@ -71,10 +102,22 @@ export default function Home() {
 					</div>
 
 					<div className="relative w-full h-full flex flex-col items-baseline justify-center px-20">
-						<h2 className="text-2xl text-left font-semibold">
+						<h2
+							className={`text-2xl text-left font-semibold transition-all duration-600 ease-out ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							Cabins in many styles
 						</h2>
-						<p className=" text-sm text-left ">
+						<p
+							className={`text-sm text-left transition-all delay-100 duration-600 ease-out  ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							{" "}
 							We work with a wide range of{" "}
 							<span className="font-semibold">
@@ -104,10 +147,22 @@ export default function Home() {
 						></Image>
 					</div>
 					<div className="relative w-full h-full flex flex-col items-baseline justify-center px-20">
-						<h2 className="text-2xl text-left font-semibold">
+						<h2
+							className={`text-2xl text-left font-semibold transition-all delay-100 duration-600 ease-out ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							Cabins with many isolation levels
 						</h2>
-						<p className=" text-sm text-left ">
+						<p
+							className={`text-sm text-left transition-all delay-200 duration-600 ease-out  ${
+								isInView
+									? "transform-none opacity-100"
+									: "translate-x-[-200px] opacity-0"
+							}`}
+						>
 							{" "}
 							From{" "}
 							<span className="font-semibold">
@@ -231,15 +286,14 @@ export default function Home() {
 							<GiCctvCamera size={50} />
 							<CardHeader className="relative w-full">
 								<CardTitle className="text-center">
-									24h Security
+									24/7 Security
 								</CardTitle>
 							</CardHeader>
 							<CardContent>
 								<p>
-									Cameras de segurança que cobrem um raio de
-									550m ao redor de todas as propriedades e uma
-									ouvidoria 24h pronta para atender qualquer
-									urgencia
+									Security cameras with 550m coverage around
+									all properties, supported by a 24/7 hotline
+									ready to respond to any urgent need.
 								</p>
 							</CardContent>
 						</Card>
@@ -325,7 +379,7 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div>
+					<div className="relative w-full h-full">
 						<ContactForm></ContactForm>
 					</div>
 				</div>
